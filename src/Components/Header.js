@@ -22,9 +22,17 @@ export default function Header() {
              
               <Link to="/login">
                 <Button variant="outline-light" size="sm" className="mx-2">
+              
                  Login
                 </Button>
               </Link> 
+              <Link to="/createuser">
+                <Button variant="outline-light" size="sm" className="mx-2">
+              
+                 SignUp
+                </Button>
+              </Link> 
+            
             </Nav>
           </Navbar.Collapse>
         

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
-const User = require("../models/User");
+const User = require("../models/createuser");
 const myfun = body('email').isEmail()
 
 body('password').isLength({ min: 5 }), 
