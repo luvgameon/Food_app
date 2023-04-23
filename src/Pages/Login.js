@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 import {
@@ -16,6 +16,7 @@ function Login() {
   let navigate = useNavigate();
   const emailref = useRef("");
   const passref = useRef("");
+  const [msg, setmsg] = useState("");
 
   const [noti, setnoti] = useState(true);
 
@@ -27,30 +28,22 @@ function Login() {
 
     event.preventDefault();
 
-    
-
     emailref.current.value = "";
     passref.current.value = "";
-
-    const response = await axios.post(
-      "http://localhost:5000/api/login",
-      userdetails
-    );
-    //    const response =await fetch('http://localhost:5000/api/createuser',{
-    //     method:'POST',
-    //     header:{
-    //         'Content-Type':'application/json'
-    //     },
-    //     body:JSON.stringify({name:userdetails.name,password:userdetails.password,email:userdetails.email,location:userdetails.location})
-    //    });
-
-    if (!response) {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/login",
+        userdetails
+      );
+      if (response.data.success) {
+        console.log(response);
+        localStorage.setItem("authToken",response.data.authToken);
+        return navigate("/");
+      }
+    } catch (error) {
+      console.log("err", error.response.data.errors);
+      setmsg(error.response.data.errors);
       setnoti(false);
-    }
-    if(response.data.success)
-    {
-      console.log(response.data.success);
-      return navigate("/");
     }
   };
   return (
@@ -97,18 +90,18 @@ function Login() {
               </MDBBtn>
             </form>
 
-            {!noti && <h4 style={{ color: "Red" }}>Incorrect Email or Password</h4>}
+            {!noti && <h4 style={{ color: "Red" }}>{msg}</h4>}
             <h5>Don't have an Account ? </h5>
-          <div className='d-flex justify-content-center'>
-
-          <Link to='/createuser'><MDBBtn color='info' className='float-right' >Register</MDBBtn></Link>
-          </div>
-        </MDBCardBody>
-        
-    
-        
-      </MDBCard>
-    </MDBContainer>
+            <div className="d-flex justify-content-center">
+              <Link to="/createuser">
+                <MDBBtn color="info" className="float-right">
+                  Register
+                </MDBBtn>
+              </Link>
+            </div>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBContainer>
     </>
   );
 }

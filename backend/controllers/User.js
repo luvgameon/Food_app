@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { body, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 
 const User = require("../models/createuser");
-const myfun = body('email').isEmail()
+const myfun = async (req, res) => {
 
-body('password').isLength({ min: 5 }), 
- async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
