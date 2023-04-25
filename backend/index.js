@@ -3,8 +3,9 @@ const app = express()
 const port = 5000
 const mongoDb= require("./db");
 mongoDb();
-const userroute=require('./routes/CreateUser');
+const Createroute=require('./routes/CreateUser');
 const loginroute=require('./routes/login');
+const displayroute=require('./routes/DisplayData');
 
 app.use((req,res,next)=>{
   res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
@@ -19,8 +20,9 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 app.use(express.json());
-app.use('/api',userroute);
+app.use('/api',Createroute);
 app.use('/api',loginroute);
+app.use('/api',displayroute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

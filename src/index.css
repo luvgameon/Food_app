@@ -1,7 +1,8 @@
-@import '~mdb-ui-kit/css/mdb.min.css';
+/* @import '~mdb-ui-kit/css/mdb.min.css';
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-}
+  background-color: #282c34;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -12,4 +13,6 @@ code {
 }
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  background-color: #d0d1d2;
+  color: black;
 }

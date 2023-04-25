@@ -9,7 +9,7 @@ import Notification from './UI/Notification';
 
 export default function App() {
   return (
-    <>
+    <div style={{backgroundColor:'#d0d1d2' ,color:'black'}}>
     <Routes>
         <Route path="/" element={ <Home/> } />
         <Route path="/login" element={ <Login/> } />
@@ -17,6 +17,6 @@ export default function App() {
         <Route path="/noti" element={ <Notification/> } />
       </Routes>
           
-    </>
+    </div>
   )
 }

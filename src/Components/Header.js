@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <>
+    <div style={{backgroundColor:'black'}}>
       <Navbar bg="dark" expand="lg" variant='dark'>
       <Container>
         <Navbar.Brand >FOOD HUNT</Navbar.Brand>
@@ -39,6 +39,6 @@ export default function Header() {
         
       </Container>
     </Navbar>
-      </>
+      </div>
   )
 }
